@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+</head>
+<body>
+    <form method="post" action="../Controller/signupCheck.php" onsubmit="return validateForm()">
+        <h3>Signup</h3>
+        <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
+            EMPLOYEE NAME: <br><input type="text" id="name" name="name" /> <br><span id="name-error"></span><br>
+        </div>
+        <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
+            CONTACT NO: <br><input type="text" id="contactNo" name="contact no" /> <br><span id="contactNo-error"></span><br>
+        </div>
+        <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
+            USER NAME: <br><input type="text" id="username" name="username" /> <br><span id="username-error"></span><br>
+        </div>
+        <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
+            Password: <br><input type="password" id="password" name="password" /> <br><span id="password-error"></span><br>
+        </div>
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+
+    <script>
+        function validateForm() {
+            const empname = document.getElementById("name").value.trim();
+            const contactNo = document.getElementById("contactNo").value.trim();
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const empnameErr = document.getElementById("name-error");
+            const contactNoErr = document.getElementById("contactNo-error");
+            const usernameErr = document.getElementById("username-error");
+            const passwordErr = document.getElementById("password-error");
+
+            empnameErr.textContent = "";
+            contactNoErr.textContent = "";
+            usernameErr.textContent = "";
+            passwordErr.textContent = "";
+
+            let isValid = true;
+
+            if (empname === "") {
+                empnameErr.textContent = "Employee name is required.";
+                isValid = false;
+            }
+
+            if (contactNo === "") {
+                contactNoErr.textContent = "Contact number is required.";
+                isValid = false;
+            }
+
+            if (username === "") {
+                usernameErr.textContent = "Username is required.";
+                isValid = false;
+            }
+
+            if (password === "") {
+                passwordErr.textContent = "Password is required.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
