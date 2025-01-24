@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Hotel Management</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #111a31;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        main {
+            padding: 30px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Hotel Continental<?php echo htmlspecialchars($username); ?></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="faq.php">FAQ</a></li>
+            <li><a href="highlight.php">Highlights</a></li>
+            <li><a href="accessibility.php">Hotel Accessibility</a></li>
+            <li><a href="policy.php">Hotel Policies</a></li>
+            <li><a href="about.php">About Us</a></li> <!-- Added About Us -->
+            <li><a href="rating.php">Rating</a></li> <!-- Added Rating -->
+            <li><a href="manage_your_booking.html">Manage Your Booking</a></li> <!-- Added Manage User -->
+            <li><a href="../logout.php">Logout</a></li>
+            <li><a href="admin_login.html">Admin Login</a></li> <!-- Added Admin Login -->
+        </ul>
+        
+    
+    </nav>
+
+    <img src="https://ultimatereflections.com/wp-content/uploads/2022/08/application.webp" 
+     width="100%" height="350px" alt="Hotel Features" class="feature-image">
+
+    <main>
+        <h2>For More Exploration</h2>
+        <p>Select one of the options above to view more information about our services, policies, and accessibility features.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hotel Management System</p>
+    </footer>
+
+</body>
+</html>

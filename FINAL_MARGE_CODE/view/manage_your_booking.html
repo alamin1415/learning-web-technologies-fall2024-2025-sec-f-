@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Management</title>
+  
+
+  //<link rel="stylesheet" href="../css/booking_management.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Manage Bookings</h1>
+    <div id="bookings">
+      <h2>Existing Bookings</h2>
+      <table id="booking-table" border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Guests</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Booking rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <div id="add-booking">
+      <h2>Add a New Booking</h2>
+      <form id="booking-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="check_in">Check-in Date:</label>
+        <input type="date" id="check_in" name="check_in" required>
+        <label for="check_out">Check-out Date:</label>
+        <input type="date" id="check_out" name="check_out" required>
+        <label for="guests">Number of Guests:</label>
+        <input type="number" id="guests" name="guests" min="1" required>
+        <button type="submit">Add Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Function to fetch and display bookings in the table
+    function loadBookings() {
+      fetch('manage_bookings.php')
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#booking-table tbody');
+          tableBody.innerHTML = ''; // Clear the table before appending new rows
+
+          if (data.error) {
+            tableBody.innerHTML = `<tr><td colspan="6">Error: ${data.error}</td></tr>`;
+          } else {
+            data.forEach(booking => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${booking.id}</td>
+                <td>${booking.name}</td>
+                <td>${booking.email}</td>
+                <td>${booking.check_in}</td>
+                <td>${booking.check_out}</td>
+                <td>${booking.guests}</td>
+              `;
+              tableBody.appendChild(row);
+            });
+          }
+        })
+        .catch(error => {
+          const tableBody = document.querySelector('#booking-table tbody');
+          tableBody.innerHTML = `<tr><td colspan="6">Error loading bookings.</td></tr>`;
+          console.error('Error fetching bookings:', error);
+        });
+    }
+
+    // Form validation function
+    function validateForm(formData) {
+      const { name, email, check_in, check_out, guests } = formData;
+
+      // Check if all fields are filled
+      if (!name || !email || !check_in || !check_out || !guests) {
+        alert("All fields are required!");
+        return false;
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address!");
+        return false;
+      }
+
+      // Validate date fields
+      const checkInDate = new Date(check_in);
+      const checkOutDate = new Date(check_out);
+      if (checkInDate >= checkOutDate) {
+        alert("Check-out date must be after the check-in date!");
+        return false;
+      }
+
+      // Validate guests number
+      if (guests <= 0) {
+        alert("Number of guests must be at least 1!");
+        return false;
+      }
+
+      return true; // All validations passed
+    }
+
+    // Function to add a new booking
+    document.getElementById('booking-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        check_in: document.getElementById('check_in').value,
+        check_out: document.getElementById('check_out').value,
+        guests: parseInt(document.getElementById('guests').value),
+      };
+
+      // Validate form data
+      if (!validateForm(formData)) {
+        return; // Stop submission if validation fails
+      }
+
+      fetch('manage_bookings.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert('Error: ' + data.error);
+        } else {
+          alert(data.message);
+          loadBookings(); // Refresh the bookings list
+          document.getElementById('booking-form').reset(); // Clear the form
+        }
+      })
+      .catch(error => console.error('Error adding booking:', error));
+    });
+
+    // Load bookings on page load
+    loadBookings();
+  </script>
+</body>
+</html>

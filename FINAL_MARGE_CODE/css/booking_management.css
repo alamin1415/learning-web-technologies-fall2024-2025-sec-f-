@@ -1,0 +1,133 @@
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* Container for the entire page */
+.container {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+/* Header section */
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Footer section */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 30px;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Booking section */
+#bookings {
+  margin-top: 30px;
+}
+
+#booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#booking-table th, #booking-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#booking-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#booking-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#booking-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Add Booking Form */
+#add-booking {
+  margin-top: 40px;
+}
+
+#booking-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#booking-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#booking-form button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+#booking-form button:hover {
+  background-color: #218838;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .container {
+      width: 95%;
+      padding: 20px;
+  }
+
+  header {
+      font-size: 20px;
+  }
+
+  footer {
+      font-size: 12px;
+  }
+
+  #booking-table th, #booking-table td {
+      padding: 10px;
+  }
+
+  #booking-form input {
+      padding: 8px;
+  }
+}
